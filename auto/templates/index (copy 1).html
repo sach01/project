@@ -1,0 +1,67 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Django Tailwind</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+<body class="text-center mx-5 space-y-3">
+	<h1 class="text-green-600 text-5xl font-bold">
+		GeeksforGeeks
+	</h1>
+	<b>Tailwind CSS Table Layout Class</b>
+	<div class="bg-green-200">
+		<table class="table-auto border-separate border border-green-900">
+		<thead>
+		<tr>
+			<th class="border border-green-600">1</th>
+			<th class="border border-green-600">2</th>
+			<th class="border border-green-600">3</th>
+			<th class="border border-green-600">4</th>
+			<th class="border border-green-600">5</th>
+			<th class="border border-green-600">6</th>
+			<th class="border border-green-600">7</th>
+			<th class="border border-green-600">8</th>
+			<th class="border border-green-600">9</th>
+			<th class="border border-white-600"></th>
+			<th class="border border-white-600"></th>
+			<th class="border border-white-600"></th>
+			<th class="border border-green-600">10</th>
+			<th class="border border-green-600">11</th>
+			<th class="border border-green-600">12</th>
+			<th class="border border-green-600">13</th>
+			<th class="border border-green-600">14</th>
+			<th class="border border-green-600">15</th>
+			<th class="border border-green-600">16</th>
+			<th class="border border-green-600">17</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td class="border border-green-600">3</td>
+			<td class="border border-green-600">
+				4
+			</td>
+		</tr>
+		<tr>
+			<td class="border border-green-600">5</td>
+			<td class="border border-green-600">
+				6
+			</td>
+		</tr>
+		<tr>
+			<td class="border border-green-600">7</td>
+			<td class="border border-green-600">
+				8
+			</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

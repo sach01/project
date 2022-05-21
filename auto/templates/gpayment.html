@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Monthly Payment</div>
+									</div>
+									<div class="card-body">
+										<div class="">
+											<div class="table-responsive">
+												<table id="example" class="table table-bordered text-nowrap key-buttons">
+													<thead>
+                                                        
+														<tr>
+															<th data-priority="1">N0.</th>
+															<th data-priority="2">Owner</th>
+                                                            <th data-priority="2">Room</th>
+															<th data-priority="3">status</th>
+                                                            <th data-priority="3">amount</th>
+                                                            <th data-priority="3">month</th>
+                                                            <th data-priority="3">pending</th>
+                                                            <th data-priority="3">balance</th>
+                                                            <th data-priority="3">received_by</th>
+                                                            <th data-priority="3">date_paid</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														{% for i in gpayment %}
+						<tr>
+							<td>{{ forloop.counter }}</td>
+							<td>{{i.stall.owner}}</td>
+                            <td>{{i.stall.room}}</td>
+							<td>{% if i.status %}
+								<span class="rounded bg-green-400 py-1 px-5 text-xs font-bold">
+									<a>Unpaid</a>
+									</span>
+								{% else %}
+								  <span class="rounded bg-red-400 py-1 px-5 text-xs font-bold">Paid</span>
+								{% endif %}</td>
+                            <td>{{i.amount}}</td>
+                            <td>{{i.month}}</td>
+                            <td>{{i.pending}} Months</td>
+                            <td>{{i.balance}}</td>
+                            <td>{{i.received_by}}</td>
+                            <td>{{i.date_paid}}</td>
+							</tr>
+					
+						<!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
+						
+						{% endfor %}
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+
+                                
+								{% endblock %}

@@ -1,0 +1,125 @@
+{{m}}
+from typing import ValuesView
+from django.db import models
+from django.db.models.expressions import F
+from django.db.models.lookups import StartsWith
+from model_utils import Choices
+from django.db import models
+from django_pandas.managers import DataFrameManager
+from datetime import datetime
+from dateutil import rrule
+from datetime import date
+from django.db.models.functions import ExtractYear, ExtractMonth
+#from DateTime import DateTime, Date
+# Create your models here.
+
+class Room(models.Model):
+	name = models.CharField(max_length=50, unique=True, default='')
+	def __str__ (self):
+        	return self.name
+
+class Room1(models.Model):
+	name = models.CharField(max_length=50, unique=True)
+	def __str__ (self):
+        	return self.name
+
+class Room2(models.Model):
+	name = models.CharField(max_length=50, unique=True)
+	def __str__ (self):
+        	return self.name
+
+class Stall(models.Model):
+	state= Choices(
+	(0, 'vacant', 'vacant'),
+	(1, 'booked', 'booked'),
+	)
+	owner = models.CharField(max_length=50, blank=True, null=True)
+	room = models.OneToOneField(Room, on_delete=models.CASCADE, max_length=3, unique=True)
+	status = models.IntegerField(default=state.vacant, choices=state)
+	check_in = models.DateTimeField(auto_now_add=True,  null=True, editable=True)
+	#date_created = models.DateTimeField(auto_now_add=True)
+	
+	def __str__ (self):
+        	 #return "%s" % self.room.name
+			 return "{} - {}".format(self.owner, self.room)
+
+class First(models.Model):
+	state= Choices(
+		(0, 'vacant', 'vacant'),
+		(1, 'booked', 'booked'),)
+	owner = models.CharField(max_length=50, blank=True, null=True)
+	room = models.OneToOneField(Room1, on_delete=models.CASCADE, max_length=3, unique=True)
+	status = models.IntegerField(default=state.vacant, choices=state)
+	check_in = models.DateTimeField(auto_now_add=True,  null=True, editable=True)
+	
+	objects = DataFrameManager()
+	
+	def __str__ (self):
+        	 #return "%s" % self.room.name
+			 return "{} - {} - {}".format(self.owner, self.room, self.status)
+
+
+class Second(models.Model):
+	state= Choices(
+		(0, 'vacant', 'vacant'),
+		(1, 'booked', 'booked'),)
+	owner = models.CharField(max_length=50, blank=True, null=True)
+	room = models.OneToOneField(Room1, on_delete=models.CASCADE, max_length=3, unique=True)
+	status = models.IntegerField(default=state.vacant, choices=state)
+	check_in = models.DateTimeField(auto_now_add=True,  null=True, editable=True)
+	
+	objects = DataFrameManager()
+	
+	def __str__ (self):
+        	 #return "%s" % self.room.name
+			 return "{} - {} - {}".format(self.owner, self.room, self.status)
+
+class Rate(models.Model):
+	pass
+
+class Payment(models.Model):
+	stall = models.ForeignKey(Stall, on_delete=models.CASCADE, max_length=3)
+	amount = models.IntegerField()
+	months = models.DateField()
+	state = models.BooleanField(default=False)
+	mode = models.CharField(max_length=50)
+	received_by = models.CharField(max_length=50)
+	date_paid = models.DateField(auto_now_add=True)
+
+@property
+def amount(self):
+	return 3000
+
+@property
+def months(self):
+	d = Stall.objects.all().annotate(
+    diff=Stall(F('check_in'), datetime.date.today())
+).annotate(
+    months=ExtractYear('diff') * 12 + ExtractMonth('diff')
+)
+	return months
+#.annotate(
+ #   remaining_balance=ExpressionWrapper(F('months') * F('monthly_payment'), output_field=models.FloatField()))
+
+#print(list(rrule.rrule(rrule.MONTHLY, dtstart=date(2013, 11, 1), until=date(2014, 2, 1))))
+#def amount(self):
+#		start = self.Stall.check_in
+#		end = self.date_paid
+
+#		return (end - start)
+		#.strftime("%B")
+		#return self.net_amount + (self.net_amount * vat_rate)
+
+	#@property
+	#def month(self):
+		#self.stall.check_in = self.stall.check_in.strftime("%B")
+	#	if self.stall.check_in:
+	#		return self.stall.check_in.strftime("%B")
+	#	return "No date entry"
+
+	#@property
+	#def period(self):
+	#	p = self.month.count()
+			#return self.stall.check_in.strftime("%B")
+	#	return "p"
+

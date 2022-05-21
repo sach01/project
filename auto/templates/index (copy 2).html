@@ -1,0 +1,537 @@
+colors = {
+  '0': 'green',
+  '1': 'yellow',
+}
+return format_html('<b style="background:{};">{}</b>',
+colors[Stall.status],
+Stall.status,
+)
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Stalls</title>
+
+		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+	</head>
+
+<body class="text-center mx-5 space-y-3">
+	<h1 class="text-green-600 text-5xl font-bold">
+		Stalls Management System
+	</h1>
+	<table>
+		
+		{% for i in all_stall %}
+			 <td>
+				<tr>{{i.room}}</tr>
+				
+			 </td>
+		{% endfor %}
+		{% if i.status == "vacant" %}
+    <td style="color: {{vacantcolor}};"><strong>{{i.status}}</strong></td>
+{% elif i.status == "booked" %}
+    <td style="color: {{bookedcolor}};"><strong>{{i.status}}</strong></td>
+{% else %}
+    <td style="color: {{bookedcolor}};"><strong>{{i.status}}</strong></td>
+{% endif %}
+
+</table>
+
+<table border = "1">
+	<tr>
+	   <td>{{ all_stall | slice:":2" }}</td>
+	   <td>Row 1, Column 2</td>
+	</tr>
+	
+	<tr>
+	   <td>Row 2, Column 1</td>
+	   <td>Row 2, Column 2</td>
+	</tr>
+ </table>
+
+{{ all_stall | slice:":2" }}
+
+
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Stalls</title>
+   </head>
+   <body>
+
+
+	<table border = "1" bordercolor = "yellow" >
+		<!--{% for i in all_stall %}
+		{% if i.number == 0 %}
+		<dir> style='bacground-color:#ffcccc'</div> style='bacground-color:#ffcccc' {% endif %}">
+		
+		{% endfor %}
+		--->
+		{% for i in all_stall %}
+	  	{% if i.status == 1 %}
+		<!---<div style="background-color:red;">text</div> --->
+		<div style="background:{% if i.status == 1 %}red;padding:5px;color:black;text-align:center;">{% if i.status == 1 %} {% endif %}</div>
+
+		{% elif i.status == 0 %}
+		<div class="yellow"></div>
+		{% else %}
+		<div class="black"></div>
+		{% endif %}
+		<tr>
+            <td rowspan = "2">{{i.room }}</td>
+         </tr>
+		{% endfor %}
+	</table>
+   </body>
+   </html>
+
+
+   <html>
+<head>
+<style>
+h1 {
+  background-color: green;
+}
+
+div {
+  background-color: lightblue;
+}
+
+p {
+  background-color: yellow;
+}
+</style>
+</head>
+<body>
+
+<h1>CSS background-color example!</h1>
+<div>
+This is a text inside a div element.
+<p>This paragraph has its own background color.</p>
+We are still in the div element.
+</div>
+
+</body>
+</html>
+
+
+
+{% for i in all_stall %}
+	  	{% if i.status == 'booked' %}
+      <tr>
+      <tr style = 'background-color: green'; rowspan = "2"> {{i.room }} </tr>
+		{% elif i.status == 'vacant' %}
+      <tr style = 'background-color: yellow'; rowspan = "2"> {{i.room }} </tr>
+        {% else %}
+      <tr style = 'background-color: blue'; rowspan = "2"> {{i.room }} </tr>
+        {% endif %}
+      </tr>
+     
+		{% endfor %}
+
+
+		<table style="background-color:#FFFFE0;">
+			<tr style="background-color:#BDB76B;color:#ffffff;">
+			<th>Table Header</th><th>Table Header</th>
+			</tr>
+			<tr>
+			<td>Table cell 1</td><td>Table cell 2</td>
+			</tr>
+			<tr>
+			<td>Table cell 3</td><td>Table cell 4</td>
+			</tr>
+			</table>
+			
+
+
+			{% for i in all_stall %}
+			<tr>
+			  <tr style="background-color:#BDB76B;"> {{i.room }} </tr>
+			</tr>
+				{% endfor %}
+
+
+
+				<!DOCTYPE html>
+<html>
+    <head>
+        <title> Set Background Color To Selected Table TR </title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            
+             tr{cursor: pointer; transition: all .25s ease-in-out}
+            .selected{background-color: red; font-weight: bold; color: #fff;}
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <table id="table" border="1">
+          {% for i in all_stall %}
+			<tr>
+        <td rowspan = "17">{{i.room }}</td>
+			 
+			</tr>
+				{% endfor %}  
+    
+        </table>
+        
+        <script>
+            
+            function selectedRow(){
+                
+                var index,
+                    table = document.getElementById("table");
+            
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                         // remove the background from the previous selected row
+                        if(typeof index !== "undefined"){
+                           table.rows[index].classList.toggle("selected");
+                        }
+                        console.log(typeof index);
+                        // get the selected row index
+                        index = this.rowIndex;
+                        // add class selected to the row
+                        this.classList.toggle("selected");
+                        console.log(typeof index);
+                     };
+                }
+                
+            }
+            selectedRow();
+        </script>
+    </body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stalls</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {% for i in all_stall %}   
+    <div style="margin-top: 30px;" class="col-md-4">
+    <div class="box-element i">
+    <hr>
+    <h6><strong>{{i.room}}</strong></h6>
+    <hr>
+    <h6>Type:</h6>
+    <button  data-product="{{ i.id }}" data-action="add" class="btn btn-outline-secondary add- 
+     btn update-cart">
+    <a href="#"> Add to Cart</a></button>&nbsp;
+
+    <button data-product="{{ i.id }}"  class="btn btn-outline-secondary">
+        <a href="{% url 'all_stall' %}">View</a>
+
+    </button>
+    
+    <h4 style="display: inline-block; float: right;">{{i.owner}}
+    </h4>
+    {% endfor %} 
+    
+    </div> 
+        
+   </div>
+
+  </body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stalls</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-green-500 text-center">Stall Management Portal</div>
+
+    </div>
+    
+
+
+  <div class="bg-blue-400 text-black-400 min-h-screen flex object-top justify-center">
+
+    <div class="grid grid-cols-10 gap-2 content-start">
+  
+      <div class="bg-white p-10 rounded hover:bg-red-700">1</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">2</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">3</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">4</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">5</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">6</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">7</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">8</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">9</div>
+      <div class="bg-white p-10 rounded hover:bg-red-700">10</div>
+    </div>
+  
+  </div>
+
+
+  </body>
+</html>
+
+
+
+
+
+<style>
+  .status-vacant{
+    background-color: green;
+  }
+  
+  .status-booked{
+    background-color: red;
+  }
+  </style>
+  {% for i in all_stall %}
+ <!-- <td><progress value="100" max="100" class={% if i.status == 'vacant'%} status-vacant {% else %} status-booked {% endif %} {% endfor %}></td> -->
+    <td><progress value="100" max="100" 
+      style="background-color: {% if i.status == '1' %}
+      green
+      {% elif i.status == '0' %}
+      red
+      {% endif %}
+      ;width:60px; height:20px"></progress></td>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stalls</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-blue-500 text-center">Stalls</div>
+    </div>
+ <!-- <div class="bg-blue-400 text-black-400 min-h-screen flex object-top justify-center">
+    <div class="grid grid-cols-10 gap-2 content-start">
+      <div class="bg-white p-10 rounded hover:bg-red-700">1</div>
+    </div>
+  -->
+    {% for i in all_stall %}
+    <tr
+      class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+      <!--<td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+        {{i.room}}</td>-->
+      <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+       {% if i.status %}
+          <span class="rounded bg-green-400 py-1 px-5 text-xs font-bold">
+            <a>{{i.room}}</a>
+            
+            {{i.room}}</span>
+        {% else %}
+          <span class="rounded bg-red-400 py-1 px-5 text-xs font-bold">{{i.room}}</span>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+
+  
+
+  
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>DataTables </title>
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+	  <!--Replace with your tailwind.css once created--> 
+	  
+	  
+
+	 <!--Regular Datatables CSS-->
+	 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+	 <!--Responsive Extension Datatables CSS-->
+	 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+	 
+	  <style>
+		
+		/*Overrides for Tailwind CSS */
+		
+		/*Form fields*/
+		.dataTables_wrapper select,
+		.dataTables_wrapper .dataTables_filter input {
+			color: #4a5568; 			/*text-gray-700*/
+			padding-left: 1rem; 		/*pl-4*/
+			padding-right: 1rem; 		/*pl-4*/
+			padding-top: .5rem; 		/*pl-2*/
+			padding-bottom: .5rem; 		/*pl-2*/
+			line-height: 1.25; 			/*leading-tight*/
+			border-width: 2px; 			/*border-2*/
+			border-radius: .25rem; 		
+			border-color: #edf2f7; 		/*border-gray-200*/
+			background-color: #edf2f7; 	/*bg-gray-200*/
+		}
+
+		/*Row Hover*/
+		table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+			background-color: #ebf4ff;	/*bg-indigo-100*/
+		}
+		
+		/*Pagination Buttons*/
+		.dataTables_wrapper .dataTables_paginate .paginate_button		{
+			font-weight: 700;				/*font-bold*/
+			border-radius: .25rem;			/*rounded*/
+			border: 1px solid transparent;	/*border border-transparent*/
+		}
+		
+		/*Pagination Buttons - Current selected */
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+			color: #fff !important;				/*text-white*/
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+			font-weight: 700;					/*font-bold*/
+			border-radius: .25rem;				/*rounded*/
+			background: #667eea !important;		/*bg-indigo-500*/
+			border: 1px solid transparent;		/*border border-transparent*/
+		}
+
+		/*Pagination Buttons - Hover */
+		.dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+			color: #fff !important;				/*text-white*/
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+			font-weight: 700;					/*font-bold*/
+			border-radius: .25rem;				/*rounded*/
+			background: #667eea !important;		/*bg-indigo-500*/
+			border: 1px solid transparent;		/*border border-transparent*/
+		}
+		
+		/*Add padding to bottom border */
+		table.dataTable.no-footer {
+			border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+			margin-top: 0.75em;
+			margin-bottom: 0.75em;
+		}
+		
+		/*Change colour of responsive icon*/
+		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+			background-color: #667eea !important; /*bg-indigo-500*/
+		}
+
+      </style>
+   </head>
+   
+
+   <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+      
+      <!--Container-->
+      <div class="container w-full md:w-4/5 lg:w-3/5 mx-auto px-2">
+      		 
+			<!--Title-->
+			<h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
+				Responsive <a class="underline mx-2" href="https://datatables.net/">Marsabit Market stalls</a> Table
+			</h1>
+			
+			
+			<!--Card-->
+			 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+			 
+				
+				<table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+					<thead>
+						<tr>
+							<th data-priority="1">Owner</th>
+							<th data-priority="2">room</th>
+							<th data-priority="3">status</th>
+							<th data-priority="4">check_in</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in all_stall %}
+						<tr>
+							<td>{{i.owner}}</td>
+							<td>{{i.room}}</td>
+							
+							<td>{% if i.status %}
+								<span class="rounded bg-green-400 py-1 px-5 text-xs font-bold">
+									<a>booked</a>
+									</span>
+								{% else %}
+								  <span class="rounded bg-red-400 py-1 px-5 text-xs font-bold">vacant</span>
+								{% endif %}</td>
+							<td>{{i.check_in}}</td>	
+						</tr>
+						
+						<!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
+						
+						{% endfor %}
+					</tbody>
+					
+				</table>
+				
+				
+			</div>
+			<!--/Card-->
+
+
+      </div>
+      <!--/container-->
+	  
+	  
+
+
+
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		
+	<!--Datatables -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			var table = $('#example').DataTable( {
+					responsive: true
+				} )
+				.columns.adjust()
+				.responsive.recalc();
+		} );
+	
+	</script>
+
+   </body>
+</html>

@@ -1,0 +1,111 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stalls</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="w-full h-screen">
+        <header class="bg-teal-400">
+          <nav class="flex justify-between w-full bg-purple-500 text-white p-4">
+            <a href="/"><span class="font-semibold text-xl tracking-tight">Market Stalls Portal</span></a>
+              <div class="md:items-center md:w-auto flex">
+                <div class="md:flex hidden">
+                    <a class="block md:text-white mr-4" href="/">Home</a>
+                  <a class="block md:text-white mr-4" href="/gfloor">Ground Floor</a>
+                  <a class="block md:text-white mr-4" href="/">First Flow</a>
+                  <a class="block md:text-white mr-4" href="/">Second Flow</a>
+                  <a class="block md:text-white mr-4" href="/stall">Check_in </a>
+                </div>
+                <div class="flex text-sm" v-else>
+                    <a class="p-2 ml-2 bg-white text-teal-500 font-semibold leading-none border border-gray-100 rounded hover:border-transparent hover:bg-gray-100" href="/auth/signin">Login</a>
+                  <a class="p-2 ml-2 bg-teal-500 text-gray-100 font-semibold leading-none border border-teal-600 rounded hover:border-transparent hover:bg-teal-600" href="/auth/signup">Sign up</a>
+                </div>
+              </div>
+          </nav>
+ <!-- <div class="bg-blue-400 text-black-400 min-h-screen flex object-top justify-center">
+    <div class="grid grid-cols-10 gap-2 content-start">
+      <div class="bg-white p-10 rounded hover:bg-red-700">1</div>
+    </div>
+  -->
+    {% for i in all_stall  %}
+    <tr
+      class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-5 lg:mb-5 ">
+      <td class="w-full xl:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+       {% if i.status  %}
+     
+          <span class="rounded ml-5 bg-green-400 py-1 px-5 text-xs font-bold rounded-full">{{i.room }}</span>
+        {% else %}
+       
+          <span class="rounded ml-5 bg-red-400 py-1 px-5 text-xs font-bold rounded-full">{{i.room }}</span>
+        
+        {% endif %}
+      </td>
+      </tr>
+      {% endfor %}
+   
+<!--
+      {% for item in s%}
+      {{ item.name }}
+      {% for x in item.items_set.all %}
+          -- {{ x.name }}
+      {% endfor %}
+  {% endfor %}
+-->
+
+ 
+  <!--{% for i in all_stall  %}
+  <tr
+    class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+    <td class="w-full xl:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative ">
+      
+     class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+      <td class="w-full xl:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+     {% if i.status  %}
+        <span class="rounded ml-5 bg-green-400 py-1 px-5 text-xs font-bold rounded-full">{{i.room }}</span>
+      {% else %}
+     
+        <span class="rounded ml-5 bg-red-400 py-1 px-5 text-xs font-bold rounded-full">{{i.room }}</span>
+      {% endif %}
+    </td>
+    </tr>
+    {% endfor %}
+
+
+
+   
+    {% for i in all_stall|slice:"0:3"  %}
+  <tr></tr>
+  <tr></tr>
+    <tr
+      class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row  lg:flex-no-wrap mt-10 mb-10 lg:mb-10">
+      <td class="w-full xl:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static ">
+       
+       class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+      <td class="w-full xl:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+      
+        
+        {% if i.status %}
+          <span class="rounded ml-5 w-min mt-5 bg-green-400 py-1 px-5 text-xs font-bold rounded-full grid grid-flow-row  ">{{i.room}}</span>
+        {% else %}
+       
+          <span class="rounded ml-5 w-min mt-5 bg-red-400 py-1 px-5 text-xs font-bold rounded-full grid grid-flow-row ">{{i.room}}</span>
+       
+       
+        {% endif %}
+       
+      </td>
+      </tr>
+      {% endfor %}-->
+
+   
+</div>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+{% block content %}
+  <h1>Add Stalls</h1>
+  <form method="post" novalidate class="max-w-2xl m-4 p-10 bg-white rounded shadow-xl">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+{% endblock %}
